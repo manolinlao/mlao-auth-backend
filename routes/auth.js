@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { createUser, loginUser, revalidateToken } = require('../controllers/auth');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
+const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
@@ -21,6 +22,6 @@ router.post('/',[
 ],loginUser);
 
 // valida si el jwt que tiene la app de Angular sigue siendo vigente
-router.get('/renew',revalidateToken);
+router.get('/renew', validarJWT, revalidarToken);
 
 module.exports = router;

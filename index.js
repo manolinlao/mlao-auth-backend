@@ -1,9 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const { dbConnection } = require('./db/config');
 require('dotenv').config();
 
 // crea el servidor de Express
 const app = express();
+
+// conexión con la DB de Mongo
+dbConnection();
 
 // Directorio Público
 app.use( express.static('public') );
